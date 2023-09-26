@@ -77,3 +77,25 @@
                 db.getCollection(collection_name).find({}).skip(2)  - skip first 2 database_name
                 db.getCollection(collection_name).find({}).sort({age: 1}) - ascending
                 db.getCollection(collection_name).find({}).sort({age: -1}) - descending
+
+*       Update
+        $set    $unset  $inc
+        $rename $currentDate    $addToSet
+
+        set age from 23 to 26
+        db.collection_name.updateOne(
+                {name: "unique name"},
+                {$set: {
+                        age: 26
+                }}
+        )
+
+        increment age 
+        db.collection_name.updateOne(
+                {name: "unique name"},
+                {$inc: {
+                        age: 1
+                }}
+        )
+
+        
