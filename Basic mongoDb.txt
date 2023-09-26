@@ -98,4 +98,13 @@
                 }}
         )
 
-        
+
+*       Delete
+
+        delete a specific document
+        db.collection_name.deleteOne({
+                name: "unique name"
+        })
+        db.collection_name.deleteMany({
+                age: 18
+        })
