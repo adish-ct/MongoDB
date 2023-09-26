@@ -71,3 +71,9 @@
                                 ]
                         }
                 })
+
+*       sort(), limit(), skip()
+                db.getCollection(collection_name).find({}).limit(2) - returns 2 database_name
+                db.getCollection(collection_name).find({}).skip(2)  - skip first 2 database_name
+                db.getCollection(collection_name).find({}).sort({age: 1}) - ascending
+                db.getCollection(collection_name).find({}).sort({age: -1}) - descending
