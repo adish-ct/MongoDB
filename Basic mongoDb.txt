@@ -39,3 +39,35 @@
 *       find multiple objects
                 db.getCollection(collection_name).find({})
 
+
+        Query Operators
+
+*       $or     $and    $in
+        $eq     $lt     $gt
+        $ne     $nin    $regex
+
+        $gt
+        ex :    age : 23
+                age : 24
+                age : 25     find age > 24
+
+                db.getCollection(collection_name).find({
+                        age: {$gt: 24}
+                });
+
+        $and
+                db.getCollection(collection_name).find({
+                        $and: [
+                                {age: {$lt: 25}},
+                                {age: {$gt: 24}}
+                        ]
+                });
+
+        $in 
+                db.getCollection(collection_name).find({
+                        age: {
+                                $in: [
+                                        23, 24
+                                ]
+                        }
+                })
