@@ -1,0 +1,25 @@
+    Mongo Db 
+
+
+*.  connect with mongo shell
+        mongosh
+
+*.  Display databases
+        show dbs
+
+*.  Create a collection 
+        db.createCollection("posts")
+
+*.  show collection
+        show collections
+
+*.  Insertion
+*.  Insert One
+        doc = {};
+        db.collection_name.insertOne(doc)
+
+*.  Insert Many
+        doc1 = {};
+        doc2 = {};
+        db.posts.insertMany([doc1, doc2]);
+

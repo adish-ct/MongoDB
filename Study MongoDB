@@ -1,0 +1,99 @@
+Mongo DB
+-----------
+insert
+------
+db.getCollection('New').insertOne({postId: NumberInt(2222)});
+
+Find()
+------
+db.New.find();
+db.getCollection('New').findOne({postId:1111});
+db.getCollection('New').find({"author.name":"Vishnu"});
+
+Query Operator
+----------------
+db.getCollection('New').find({comments:{$gt:0}});
+db.getCollection('New').find({ $and: [ { comments: { $gt: 10 } }, { comments: { $gt: 10 }}]});
+db.getCollection('New').find({ $or: [ { shared: true }, { tags: "programming" }]})
+
+sort()  limit()  skip()
+-------------------
+db.getCollection('New').find({}).limit(1);
+db.getCollection('New').find({}).skip(7);
+db.getCollection('New').find({}).sort({comment: 1});
+db.getCollection('New').find({}).skip(2).sort({shared: 1});
+
+distinct
+--------
+db.person.distinct("eyeColor");
+
+update Methods
+----------------
+db.New.updateOne({postId: 1113}, {$set:{shared: false}});
+db.New.updateMany({tags: []}, {$unset: {tags: 1}});
+db.New.updateOne({postId: 1113}, {$inc: {comments: 3}});
+
+delete Methods
+----------------
+db.getCollection('New').deleteOne({postId: 2222});
+db.getCollection('New').deleteMany({title: {$exists: false}});
+
+Aggregation()
+-------------
+group
+db.New.aggregate([{$group: {_id: "$author.name"}}]);
+db.person.aggregate([{$group: {_id: "$age"}}]); 
+db.person.aggregate([{$group: {_id: "$company.location.country"}}]);
+db.person.aggregate([{$group: {_id: {age: "$age", gender: "$gender"}}}]);
+
+match
+db.person.aggregate([{ $match: { age: {$gt: 25}}}]);
+db.person.aggregate([{$match: {isActive: true}}]);
+db.person.aggregate([{$match: {tags: {$size: 3}}}]);
+db.person.aggregate([{$match: {favoriteFruit: "banana"}}, {$group: {_id: {age: "$age", eyeColor: "$eyeColor"}}}]);
+
+count
+db.person.aggregate([{$count: "counties"}]);
+db.person.aggregate([{$group: {_id: "$company.location.country"}}, {$count: "countriesCount"}]);
+db.person.aggregate([{$group: {_id: "$favoriteFruit"}}, {$sort: {_id: 1}}]);
+db.person.aggregate([{$group: {_id: {eyeColor: "$eyeColor", favoriteFruit: "$favoriteFruit"}}}, {$sort: {"_id.eyeColor": 1, "_id.favoriteFruit": -1}}]);
+
+project
+db.person.aggregate([{$project: {_id: 0, name:1, age: 1}}]);
+db.person.aggregate([{$project: {name:1, "company.title":1}}]);
+db.person.aggregate([{$project: {_id: 0, index: 1,  name: 1, info: {eyes: "$eyeColor", company: "$company.title", country: "company.location.country"}}}]);
+
+limit
+db.person.aggregate([{$limit: 30}, {$match: {age: {$gt: 27}}}, {$group: {_id: "$company.location.country"}}]);
+db.person.aggregate([{$limit: 50}, {$match: {eyeColor: {$ne: "blue"}}}, {$group: {_id: {eyeColor: "$eyeColor", favoriteFruit: "$favoriteFruit"}}}, {$sort: {"_id.eyeColor": 1, "_id.favoriteFruit": -1}}]);
+
+unwind
+db.person.aggregate([{$unwind: "$tags"}, {$project: {name: 1, gender: 1, tags: 1}}]);
+db.person.aggregate([{$unwind: "$tags"}, {$group: {_id: "$tags"}}]);
+
+Accumulator
+sum
+db.person.aggregate([{$group: {_id: "$age", count: {$sum: 1}}}]);
+db.person.aggregate([{$group: {_id: "$favoriteFruit", count: {$sum: 1}}}]);
+db.person.aggregate([{$unwind: "$tags"}, {$group: {_id: "$tags", count: {$sum: 1}}}]);
+
+avg
+db.person.aggregate([{$group: {_id: "$eyeColor", avgAge: {$avg: "$age"}}}]);
+db.person.aggregate([{$group: {_id: "$company.location.country", avgAge: {$avg: "$age"}}}]);
+
+Unary operator
+$type
+db.person.aggregate([{$project: {name: 1, eyeColorType: {$type: "$eyeColor"}, ageType: {$type: "$age"}}}]);
+
+$out
+db.person.aggregate([{$group: {_id: {age:  "$age", eyeColor: "$eyeColor"}}}, {$out: "aggregationResults"}]);
+show collections
+db.aggregationResults.find()
+
+Indexes()
+---------
+db.New.getIndexes();
+
+mongoDB utilities
+------------------
+mongoexport -d New -c New -o New.txts
