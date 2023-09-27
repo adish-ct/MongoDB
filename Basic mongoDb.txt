@@ -108,3 +108,13 @@
         db.collection_name.deleteMany({
                 age: 18
         })
+
+
+*       Aggregation
+
+        collect specific details of field
+        db.collection_name.aggregate([
+                {$group: {
+                        _id: "$age
+                }}
+        ])
