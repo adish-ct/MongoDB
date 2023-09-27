@@ -71,6 +71,25 @@
             {name: 1, age: 1}
         )
         (if the value is 1 it will include the field)
+        (if you want to exclude _id field, mention _id: 0)
+        (if you want to show the field whichone present in nested object { object.field: 1 or 0 })
+        .find(
+            {},
+            {name: 0, age: 0}
+        )
+        (this will give the result of all Objects except name and age field)
+
+    Regex
+    # regular expression using name
+        .find({
+            name: {
+                $regex: /pattern/options - we can also write another method
+                $regex: /pattern/, $options: "i"
+            }
+        })
+        (pattern : like a part of name /ark/, /pov/, or pure regular expression like /^ad$/)
+        (options : i means incase sensitive both upper case and lower case will condider)
+
     # find count
         query.count()
         .find({
