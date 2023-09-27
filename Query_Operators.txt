@@ -1,0 +1,53 @@
+*   Find Objects
+    # impicit and operator (both field are same it override the first field)
+        db.getCollection(collectionName).find({
+            "age": 28,
+            "section": "IT"
+        })
+
+*   Comparison Operators
+
+    # equal
+        .find({
+            "age": {$eq: 20}
+        })
+    # not equal
+        .find({
+            "age": {$ne: 18}
+        })
+    # greater than
+        .find({
+            "age": {$gt: 18}
+        })
+    # less than
+        .find({
+            "age": {$lt: 30}
+        })
+    # both greater than and less than
+        .find({
+            "age": {$gt: 18, $lt: 25}
+        })
+    # filter data in perticular condition
+        .find({
+            "age": {$in: [23, 25]}
+        })
+    # filter data is not present in perticular condition 
+        .find({
+            "age": {$nin: [23, 25]}
+        })
+    # Explicit and operator
+        .find({
+            $and: [
+                {age: {$gt: 20}}, {age: {$lte: 30}}
+            ]
+        })
+    # find count
+        query.count()
+        .find({
+            "age": {$gt: 18, $lt: 25}
+        }).count()
+    # sort the data
+        query.sort({"age": 1})
+        query.sort({"age": -1})
+    
+    
