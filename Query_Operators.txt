@@ -41,6 +41,36 @@
                 {age: {$gt: 20}}, {age: {$lte: 30}}
             ]
         })
+    # Or operator
+        .find({
+            $or: [
+                {age: {$lt: 25}, {salary: {$gt: 15000}}}
+            ]
+        })
+
+    Query in array
+    # tags : []
+        .find({
+            "tags.0": " "
+        })
+        0: index position, 
+    # $all
+    # $size
+
+    Element Operators
+    # exists operator to check if the field is exist or not 
+
+        {tags: {$exists: true}} - return Objects if it contains tags field
+        {name: {$exists: false}} - return Objects which is not contains name field
+
+
+    Filter from collection Objects
+    # fetch name and age from Objects
+        .find(
+            {}, 
+            {name: 1, age: 1}
+        )
+        (if the value is 1 it will include the field)
     # find count
         query.count()
         .find({
