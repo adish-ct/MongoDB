@@ -19,3 +19,21 @@
                 db.collection_name.insertOne(object)
                 db.collection_name.insertMany([object1, object2, object3])
                 db.collection_name.insert(object)
+
+
+    AGGREGATION
+
+        # Operators
+            $match      $group      $project        $skip
+            $sort       $count      $limit          $out
+
+        # $group
+            db.collection_name.aggregate({$group: {_id: "$age"}})
+            db.collection_name.aggregate({$group: {_id: "$name", {$sum: "$price"}}})
+
+        # $match
+            aggregate({$match: {age: {$gt: 24}}})
+            aggregate({$match: {$and:[
+                {gender: "female"},
+                {age: {$gt: 30 }}
+            ]}})
