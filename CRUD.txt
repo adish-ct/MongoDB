@@ -74,4 +74,11 @@
                 {$sort: {"_id.age": 1, "_id.place": -1}}
             ])
 
+        # Project stage
+            .aggregate([{$project: {name: 1, age: 1}}])
+            (both name and age will show, _id will be show always)
+            .aggregate([{$project: {_id: 0, name: 1, age: 1}}])
+            (_id will be excluded)
+            .aggregate([{$project: {name: 0, age: 0}}])
+            (excluded name and age)
         
