@@ -28,12 +28,38 @@
             $sort       $count      $limit          $out
 
         # $group
-            db.collection_name.aggregate({$group: {_id: "$age"}})
-            db.collection_name.aggregate({$group: {_id: "$name", {$sum: "$price"}}})
+            db.collection_name.aggregate([{$group: {_id: "$age"}}])
+            db.collection_name.aggregate([{$group: {_id: "$name", {$sum: "$price"}}}])
 
         # $match
-            aggregate({$match: {age: {$gt: 24}}})
-            aggregate({$match: {$and:[
+            aggregate([{$match: {age: {$gt: 24}}}])
+            aggregate([{$match: {$and:[
                 {gender: "female"},
                 {age: {$gt: 30 }}
-            ]}})
+            ]}}]) 
+
+        # match and group
+            aggregate([
+                {$match: {gender: "male"},
+                {$group: {_id: {age: "$age", place: "$place"}}}
+                }
+            ])
+
+        # count stage
+             aggregate([
+                {$count: "allDocumentsCount"}
+             ])
+        # Diffrent count methods
+            Aggregate([]).toArray().length
+            (convert to array and find its length)
+            aggregate([]).itcount()
+            find({}).count()
+
+            aggregate([
+                {$match: {}},
+                {$group: {}},
+                {$count: ""}
+            ])
+
+        
+        
