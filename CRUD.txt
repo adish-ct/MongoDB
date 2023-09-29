@@ -1,0 +1,21 @@
+    CREATE
+
+        # Create Database
+            use Database_name
+            (There is no command for create Database, it will create automatically when new collection created)
+
+        # Create collection
+            db.createCollection("collection_name")
+
+        # Show collections 
+            show collections
+
+        # Delete collection
+            db.getCollection("collection_name").drop()
+            db.collection_name.drop()
+
+        # Create document
+            * Insert one document
+                db.collection_name.insertOne(object)
+                db.collection_name.insertMany([object1, object2, object3])
+                db.collection_name.insert(object)
