@@ -82,3 +82,18 @@
             .aggregate([{$project: {name: 0, age: 0}}])
             (excluded name and age)
         
+        # Limit stage
+            choose the limit and do other aggregate operations
+            .aggregate([
+                {$limit: 100},{$match: {age: {$gt: 25}}}, {$group: {_id: "company"}}
+            ])
+
+        # unwind stage
+            Convert array elements into each single object format
+            {tags: ["first", "second", "third"]}
+            .aggragate([
+                {$unwind: "$tags"},
+                {$project: {name: 1, age: 1, tags: 1}}
+            ])
+            output will generate with each of tag elements separately.
+            
