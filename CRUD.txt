@@ -121,4 +121,17 @@
                 {$unwind : "$tags"},
                 {$group: {_id: "$tags", count: {$sum: 1}}}
             ])
+
+        # avg
+            .aggragate([
+                {$group: {_id: "$section", avgAge: {$avg: "$age"}}}
+            ])
+
+    Unary Operators
+        (operations takes in each document, used in project stage)
+        # type
+            (return bson file field)
+            .aggragate([
+                {$project: {name: 1, age: 1, ageType: {$type : "$age"}}}
+            ])
         
