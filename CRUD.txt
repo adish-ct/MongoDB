@@ -134,4 +134,12 @@
             .aggragate([
                 {$project: {name: 1, age: 1, ageType: {$type : "$age"}}}
             ])
-        
+
+        # out 
+            (store aggregation result as new collection)
+            .aggregate([
+                {},
+                {},
+                {$out: "outCollectionReport}
+            ])
+            db.outCollectionReport.find({}).count()
