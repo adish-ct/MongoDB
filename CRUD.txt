@@ -103,3 +103,22 @@
                 {$group: {_id: "$tags"
                 }}
             ])
+
+        ACCUMULATORS 
+        #   $sum        $avg        
+            $max        $min
+        (most accumulators are used only in the group stage, inside the group expression)
+
+        # sum
+            .aggragate([
+                {$group: {_id: "$age", count: {$sum: 1}}}
+            ])
+            .aggregate([
+                {$group: {_id: "$section", total: {$sum: "$salary"}}}
+            ])
+        # sum and unwind together
+            .aggregate([
+                {$unwind : "$tags"},
+                {$group: {_id: "$tags", count: {$sum: 1}}}
+            ])
+        
