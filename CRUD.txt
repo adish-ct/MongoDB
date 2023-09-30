@@ -96,4 +96,10 @@
                 {$project: {name: 1, age: 1, tags: 1}}
             ])
             output will generate with each of tag elements separately.
-            
+        
+        # unwind compained with group stage
+            .aggragate([
+                {$unwind: "$tags"},
+                {$group: {_id: "$tags"
+                }}
+            ])
