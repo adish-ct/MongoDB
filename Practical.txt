@@ -6,3 +6,41 @@ Create a database
 create collection
     -   db.createCollection("employee")
 
+create document 
+    -   db.employee.insertOne(
+        {"id": 2},
+        {"name" : "rahul"},
+        {"design": "civil"},
+        {"salary": 34000},
+        {"address": {"dno": 3, "street": 43, "locality": "ferok", "city": "calicut"}}
+    )
+
+add an age field into the document
+    -   db.employee.updateOne(
+        {name: "rahul"},
+        {$push: {"age": 24}}
+    )
+
+update the age field
+    -   db.employee.updateOne(
+        {name: "rahul"},
+        {$set: {age: 26}}
+    )
+
+add his projects in array format
+    -   db.employee.updateOne(
+        {name: "rahul"},
+        {$push: {"projects": ["project1", "project2"]}}
+    )
+
+add project3 into the document
+    -   db.employee.updateOne(
+        {name: "rahul"},
+        {$push: {project: "project3"}}
+    )
+
+delete project3 from the document
+    -   db.employee.updateOne(
+        {name: "rahul"},
+        {$pull: {project: "project3"}}
+    )
