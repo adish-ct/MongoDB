@@ -1,0 +1,8 @@
+Sample Data
+
+Create a database
+    -   use employee
+
+create collection
+    -   db.createCollection("employee")
+
