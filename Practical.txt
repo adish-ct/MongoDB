@@ -71,4 +71,29 @@ add phone field again into the embededd object contacts
         {$set: {"contacts.phone": "9876543212"}}
         )
 
+add more phone field into the object
+    -   db.employee.updateOne(
+        {name: 'rahul'},
+        {$set: {"contacts.phone": ["1234567890", "9876543210]}}
+        )
 
+add one more phone number into the field
+    -   db.employee.updateOne(
+        {name: 'rahu'},
+        {$push: {"contact.phone": "0000000000"}}
+    )
+
+How to handle these operations with multiple objects
+design : "civil" for rahul there are more people in civi section 
+
+add contact field for every object
+    -   db.employee.upadateMany(
+        {design: "civil"},
+        {$set: {"contact": {"email": "", "phone": ""}}}
+    )
+
+remove the phone field
+    -   db.employee.upadateMany(
+        {design: "civil"},
+        {$unset: {"contact.phone": ""}}
+    )
