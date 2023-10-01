@@ -27,6 +27,7 @@ update the age field
         {$set: {age: 26}}
     )
 
+* note in the case of array we used $pull and $push command
 add his projects in array format
     -   db.employee.updateOne(
         {name: "rahul"},
@@ -44,3 +45,25 @@ delete project3 from the document
         {name: "rahul"},
         {$pull: {project: "project3"}}
     )
+
+delete entire project field
+    -   db.employee.updateOne(
+        {name: "rahul"},
+        {$unset: {project: ""}}
+    )
+
+* in the case of embededd objects use $set and $unset commands
+add new embededd object field
+    -   db.employee.updateOne(
+        {name: 'rahul'},
+        {$set: {"contacts": {"email": "rahul@gmail.com", "phone": "9876543212"}}}
+    )
+
+remove a phone field from embededd object contacts
+    -   db.employee.updateOne(
+        {name: 'rahul'},
+        {$unset: {"contacts.phone": ""}}
+    )
+
+    
+
