@@ -97,3 +97,9 @@ remove the phone field
         {design: "civil"},
         {$unset: {"contact.phone": ""}}
     )
+
+increase the salary by 500
+    -   db.employee.updateOne(
+        {name: 'rahul'},
+        {$inc: {salary: 500}}
+    )
