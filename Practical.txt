@@ -15,7 +15,7 @@ create document
         {"address": {"dno": 3, "street": 43, "locality": "ferok", "city": "calicut"}}
     )
 
-add an age field into the document
+add an age field into the document in array format
     -   db.employee.updateOne(
         {name: "rahul"},
         {$push: {"age": 24}}
@@ -79,7 +79,7 @@ add more phone field into the object
 
 add one more phone number into the field
     -   db.employee.updateOne(
-        {name: 'rahu'},
+        {name: 'rahul'},
         {$push: {"contact.phone": "0000000000"}}
     )
 
@@ -103,3 +103,4 @@ increase the salary by 500
         {name: 'rahul'},
         {$inc: {salary: 500}}
     )
+
