@@ -1,0 +1,24 @@
+1.  Scaling
+
+    Scaling in mongoDB refers to the process of increasing or decreasing the resources allocated to your database
+    to meet changing demands.
+
+    # Horizontal Scaling
+
+        It also called Scaling out, it involves adding more servers to your database cluster.
+
+    # Vertical Scaling
+
+        increasing the resources of a single server, like RAM , CPU.
+
+2.  Shardding
+
+    Shardding is a database Scaling technique that involves distributed data across the multiple servers. This allow you
+    to scale your database Horizontaly.
+
+3. Replication
+
+    Replication is the process of creating and maintaining copy of data into the multiple servers.
+    it imporves redundancy, availability, scalability
+
+4. 
